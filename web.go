@@ -14,6 +14,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"fmt"
+	"regexp"
 )
 
 type WebhookResponse struct {
@@ -38,9 +40,15 @@ func init() {
 
 			if rand.Intn(100) <= responseChance || strings.Contains(text, botUsername) {
 				var startStr string
+				var matchStr string
 				startStr = ""
-				if strings.Contains(text, "what is your") {
-					startStr = "My"
+				// https://regex-golang.appspot.com/assets/html/index.html
+				wiy := regexp.MustCompile("([W|w]hat is your)(\w*( )*)*")
+				if wiy.FindString(text) {
+					wiy := regexp.MustCompile("([W|w]hat is your)(\w*( )*)*")
+					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
+					startStr = "My "
+					append(startStr, matchStr)
 				}
 				var response WebhookResponse
 				response.Username = botUsername
