@@ -37,9 +37,14 @@ func init() {
 			}()
 
 			if rand.Intn(100) <= responseChance || strings.Contains(text, botUsername) {
+				string startStr
+				startStr = ""
+				if strings.Contains(text, "what is your") {
+					startStr = "My"
+				}
 				var response WebhookResponse
 				response.Username = botUsername
-				response.Text = strings.Trim(markovChain.Generate(numWords, "slackbutt is"), " ") //remove preceding space to /giphy
+				response.Text = markovChain.Generate(numWords, startStr)
 				log.Printf("Sending response: %s", response.Text)
 
 				b, err := json.Marshal(response)
