@@ -50,7 +50,8 @@ func NewChain(prefixLen int) *Chain {
 func (c *Chain) Write(in string) (int, error) {
 	sr := strings.NewReader(in)
 //	p := make(Prefix, c.prefixLen)
-	p := make((Prefix := []string {"dickbutt","is"}), c.prefixLen)
+	Prefix = []string {"dickbutt","is"}
+	p := make(Prefix, c.prefixLen)
 	for {
 		var s string
 		if _, err := fmt.Fscan(sr, &s); err != nil {
