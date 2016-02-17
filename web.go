@@ -37,7 +37,7 @@ func init() {
 				markovChain.Save(stateFile)
 			}()
 
-			if rand.Intn(100) <= responseChance || strings.Contains(text, botUsername) {
+			if rand.Intn(99) < responseChance || strings.Contains(text, botUsername) {
 				var startStr string
 				var matchStr string
 				startStr = ""
@@ -46,7 +46,11 @@ func init() {
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
 					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
-					startStr = strings.Trim("My" + matchStr +" is", " ")
+					if rand.Intn(99) <= 50 {
+						startStr = strings.Trim("My" + matchStr +" is", " ")
+					} else {
+						startStr = strings.Trim("My" + matchStr, " ")
+					}
 					log.Printf("Handling special request: what is your |")
 					log.Printf("\t\t matchStr:|%s|", matchStr)
 					log.Printf("\t\t startStr:|%s|", startStr)
