@@ -79,7 +79,7 @@ func (c *Chain) Generate(n int) string {
 		words = append(words, next)
 		p.Shift(next)
 	}
-	return strings.Join(words, " ")
+	return strings.Trim(strings.Join(words, " "), " ")
 }
 
 // Save the chain to a file
