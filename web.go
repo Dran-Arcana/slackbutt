@@ -46,7 +46,7 @@ func init() {
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
 					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
-					startStr = strings.Trim("My" + matchStr, " ")
+					startStr = strings.Trim("My" + matchStr +" is", " ")
 					log.Printf("Handling special request: what is your |")
 					log.Printf("\t\t matchStr:|%s|", matchStr)
 					log.Printf("\t\t startStr:|%s|", startStr)
