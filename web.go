@@ -53,7 +53,7 @@ func init() {
 				}
 
 				time.Sleep(5 * time.Second)
-				w.Write(strings.Trim(b, " "))
+			//	w.Write(strings.Trim(b, " "))
 			}
 		}
 	})
