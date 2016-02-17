@@ -65,12 +65,12 @@ func (c *Chain) Write(in string) (int, error) {
 }
 
 // Generate returns a string of at most n words generated from Chain.
-func (c *Chain) Generate(n int, startWord string) string {
+func (c *Chain) Generate(n int, startStr string) string {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	p := make(Prefix, c.prefixLen)
 	var words []string
-	words = append(words, "dickbutt is")
+	words = append(words, startStr)
 	for i := 0; i < n; i++ {
 		choices := c.Chain[p.String()]
 		if len(choices) == 0 {
