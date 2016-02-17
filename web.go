@@ -26,7 +26,7 @@ func init() {
 		incomingText := r.PostFormValue("text")
 		if incomingText != "" && r.PostFormValue("user_id") != "" {
 			text := parseText(incomingText)
-			log.Printf("Handling incoming request:: %s", text)
+			log.Printf("Handling incoming request: %s", text)
 
 			if text != "" {
 				markovChain.Write(text)
