@@ -37,7 +37,7 @@ func init() {
 			}()
 
 			if rand.Intn(100) <= responseChance || strings.Contains(text, botUsername) {
-				string startStr
+				var string startStr
 				startStr = ""
 				if strings.Contains(text, "what is your") {
 					startStr = "My"
