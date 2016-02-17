@@ -29,14 +29,6 @@ func init() {
 			text := parseText(incomingText)
 			log.Printf("Handling incoming request: %s", text)
 
-			if text != "" {
-				markovChain.Write(text)
-			}
-
-			go func() {
-				markovChain.Save(stateFile)
-			}()
-
 			if rand.Intn(99) < responseChance || strings.Contains(text, botUsername) {
 				var startStr string
 				var matchStr string
@@ -72,6 +64,14 @@ func init() {
 
 				time.Sleep(5 * time.Second)
 				w.Write(b)
+			} else {
+				if text != ""{
+					markovChain.Write(text)
+				}
+
+				go func() {
+					markovChain.Save(stateFile)
+				}()
 			}
 		}
 	})
