@@ -42,8 +42,9 @@ func init() {
 				var matchStr string
 				startStr = ""
 				// https://regex-golang.appspot.com/assets/html/index.html
-				wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
-				if wiy.FindString(text) !="" {
+				
+				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
+					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
 					startStr = "My" + matchStr + "is "
 				}
