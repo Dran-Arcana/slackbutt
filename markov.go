@@ -49,8 +49,7 @@ func NewChain(prefixLen int) *Chain {
 // Write parses the bytes into prefixes and suffixes that are stored in Chain.
 func (c *Chain) Write(in string) (int, error) {
 	sr := strings.NewReader(in)
-//	p := make(Prefix, c.prefixLen)
-	p := make({"dickbutt","is"}, c.prefixLen)
+	p := make(Prefix, c.prefixLen)
 	for {
 		var s string
 		if _, err := fmt.Fscan(sr, &s); err != nil {
@@ -69,7 +68,8 @@ func (c *Chain) Write(in string) (int, error) {
 func (c *Chain) Generate(n int, startWord string) string {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	p := make(Prefix, c.prefixLen)
+	//p := make(Prefix, c.prefixLen)
+	p := make({"dickbutt","is"}, c.prefixLen)
 	var words []string
 	for i := 0; i < n; i++ {
 		choices := c.Chain[p.String()]
