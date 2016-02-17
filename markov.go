@@ -69,7 +69,7 @@ func (c *Chain) Generate(n int, startWord string) string {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	p := make(Prefix, c.prefixLen)
-	var words []string = {"dickbutt is"}
+	var words []string {"dickbutt is"}
 	for i := 0; i < n; i++ {
 		choices := c.Chain[p.String()]
 		if len(choices) == 0 {
