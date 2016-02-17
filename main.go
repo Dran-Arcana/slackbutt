@@ -45,7 +45,7 @@ func main() {
 	flag.IntVar(&prefixLen, "prefix", 2, "Prefix length in words")
 	flag.IntVar(&responseChance, "responseChance", 10, "Percent chance to generate a response on each request")
 	flag.StringVar(&stateFile, "stateFile", "state", "File to use for maintaining our markov chain state")
-	flag.StringVar(&botUsername, "botUsername", "markov-bot", "The name of the bot when it speaks")
+	flag.StringVar(&botUsername, "botUsername", "slackbutt", "The name of the bot when it speaks")
 
 	flag.StringVar(&twitterConsumerKey, "twitterConsumerKey", "", "Twitter API key")
 	flag.StringVar(&twitterConsumerSecret, "twitterConsumerSecret", "", "Twitter API key secret")
