@@ -45,7 +45,7 @@ func init() {
 				wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 				if wiy.FindString(text) !="" {
 					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
-					startStr = "My " + matchStr
+					startStr = "My" + matchStr + "is"
 				}
 				var response WebhookResponse
 				response.Username = botUsername
