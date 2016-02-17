@@ -48,8 +48,8 @@ func init() {
 					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
 					startStr = strings.Trim("My" + matchStr, " ")
 					log.Printf("Handling special request: what is your |")
-					log.Printf("\t\t matchStr: %s", matchStr)
-					log.Printf("\t\t startStr: %s", startStr)
+					log.Printf("\t\t matchStr:|%s|", matchStr)
+					log.Printf("\t\t startStr:|%s|", startStr)
 				}
 				var response WebhookResponse
 				response.Username = botUsername
