@@ -28,6 +28,7 @@ func init() {
 		if incomingText != "" && r.PostFormValue("user_id") != "" {
 			text := parseText(incomingText)
 			log.Printf("Handling incoming request: %s", text)
+			var lastResponse string
 
 			if rand.Intn(99) < responseChance || strings.Contains(text, botUsername) {
 				var startStr string
@@ -44,8 +45,8 @@ func init() {
 						startStr = strings.Trim("My" + matchStr, " ")
 					}
 					log.Printf("Handling special request: what is your |")
-					log.Printf("   |----matchStr:|%s|", matchStr)
-					log.Printf("   |----startStr:|%s|", startStr)
+					log.Printf("   \\----matchStr:|%s|", matchStr)
+					log.Printf("   \\----startStr:|%s|", startStr)
 				}
 				var response WebhookResponse
 				response.Username = botUsername
@@ -64,9 +65,11 @@ func init() {
 
 				time.Sleep(5 * time.Second)
 				w.Write(b)
+				
+				lastResponse = text
 			} else {
-				if text != ""{
-					log.Printf("   |----learning: %s", text)
+				if text != "" || text == lastResponse{
+					log.Printf("   \\----learning")
 					markovChain.Write(text)
 				}
 
