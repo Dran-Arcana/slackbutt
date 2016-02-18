@@ -88,12 +88,12 @@ func init() {
 				} else if rand.Intn(99) < 100 { //smart reply long word
 					log.Printf("    \\----Handling special request: smart |")
 					longWord := ""
-					for _,element := range strings.Split(text, " ") {
-						if len(longWord) > len(element) && longWord != "slackbutt"{
-							longWord = element	
+					for index,element := range strings.Split(text, " ") {
+						if len(longWord) > len(element) && element != "slackbutt"{
+							longWord = element
+								log.Printf("      \\----longWord:|%i|%s|", index, longWord)
 						}
 					}
-					log.Printf("    \\----longWord:|%s|", longWord)
 					for markovBrute < 100000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
