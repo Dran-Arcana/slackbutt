@@ -44,8 +44,8 @@ func init() {
 						startStr = strings.Trim("My" + matchStr, " ")
 					}
 					log.Printf("Handling special request: what is your |")
-					log.Printf("\t\t matchStr:|%s|", matchStr)
-					log.Printf("\t\t startStr:|%s|", startStr)
+					log.Printf("|----matchStr:|%s|", matchStr)
+					log.Printf("|----startStr:|%s|", startStr)
 				}
 				var response WebhookResponse
 				response.Username = botUsername
@@ -66,6 +66,7 @@ func init() {
 				w.Write(b)
 			} else {
 				if text != ""{
+					log.Printf("learning: %s", text)
 					markovChain.Write(text)
 				}
 
