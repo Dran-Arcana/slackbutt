@@ -59,6 +59,7 @@ func init() {
 					
 					strSplit := strings.Split(startStr, " ")
 					backupBrute := strSplit[len(strSplit)-1]
+					log.Printf("    \\----backupBrute:|%s|", backupBrute)
 					for markovBrute < 25000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
@@ -66,13 +67,15 @@ func init() {
 						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
 							log.Printf("        \\----found!:|%s|", response.Text)
 							markovBruteFound = true
+							break
 						}
 						if strings.Contains(response.Text, backupBrute){
 							backupBrute = response.Text
-							log.Printf("        \\----setting backupBrute:|%s|", response.Text)
+							log.Printf("        \\----setting backupBrute:|%s|", backupBrute)
 						}
 					}
-					if backupBrute != strSplit[len(strSplit)-1]{
+					log.Printf("        \\----checking backupBrute:|%s|%s|", backupBrute, strSplit[len(strSplit)-1])
+					if markovBruteFound == false && backupBrute != strSplit[len(strSplit)-1]{
 						response.Text = backupBrute
 						log.Printf("        \\----using backupBrute:|%s|", response.Text)
 					}
