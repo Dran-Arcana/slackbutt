@@ -34,7 +34,12 @@ func init() {
 			if rand.Intn(99) < responseChance || strings.Contains(text, botUsername) {
 				var startStr string
 				var matchStr string
+				var response WebhookResponse
+				response.Username = botUsername
+				markovBrute := 1
+				markovBruteFound := false
 				startStr = ""
+				
 				// https://regex-golang.appspot.com/assets/html/index.html
 				
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
@@ -46,30 +51,32 @@ func init() {
 						startStr = strings.Trim("My" + matchStr, " ")
 					}
 					log.Printf("  \\----Handling special request: what is your |")
+					log.Printf("        \\----Handling special request: smart |")
 					log.Printf("        \\----matchStr:|%s|", matchStr)
 					log.Printf("        \\----startStr:|%s|", startStr)
-				}/* Doesn't actually work, no idea why
-				else if rand.Intn(99) < 100 {
-					log.Printf("  \\----Handling special request: smart |")
-					smart := regexp.MustCompile("([0-9A-Za-z_'])*")
-					strArr := smart.FindAllString(text, -1)
-					startStr := strArr[0]
-					if strings.Contains(startStr, "slackbutt"){
-						startStr = ""	
-					}
-					for index,element := range strArr {
-						if len(element) > len(startStr) && !strings.Contains(element, "slackbutt"){
-							startStr = element
-							log.Printf("        \\----smartStart:|%i: %s|", index, startStr)
+					
+					markovBruteFound == false
+					
+					strSplit := strings.Split(startStr, " ")
+					backupBrute := strSplit[len(strSplit)-1]
+					for markovBrute < 500 || markovBruteFound == true {
+						markovBrute += 1
+						response.Text = markovChain.Generate(numWords, "")
+						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
+							markovBruteFound = true
+						}
+						if strings.Contains(response.Text, backupBrute){
+							backupBrute = response.Text	
 						}
 					}
-					log.Printf("        \\----startStr:|%s|", startStr)
+					if backupBrute != strSplit[len(strSplit)-1]{
+						response.Text = backupBrute	
+					}
+					
+				} else {
+					response.Text = markovChain.Generate(numWords, "")	
 				}
-				*/
 				
-				var response WebhookResponse
-				response.Username = botUsername
-				response.Text = markovChain.Generate(numWords, startStr)
 				log.Printf("Sending response: %s", response.Text)
 
 				b, err := json.Marshal(response)
