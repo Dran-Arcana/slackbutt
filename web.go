@@ -85,6 +85,26 @@ func init() {
 						log.Printf("        \\----using backupBrute:|%s|", response.Text)
 					}
 					
+				} else if rand.Intn(99) < 100 { //smart reply long word
+					log.Printf("    \\----Handling special request: smart |")
+					longWord := ""
+					for _,element := range strings.Split(text, " ") {
+						if len(longWord) > len(element) && longWord != "slackbutt"{
+							longWord = element	
+						}
+					}
+					log.Printf("    \\----longWord:|%s|", longWord)
+					for markovBrute < 100000 && markovBruteFound == false {
+						markovBrute += 1
+						response.Text = markovChain.Generate(numWords, "")
+						//log.Printf("      \\----trying:|%i|%s|", markovBrute, response.Text)
+						if (strings.Contains(response.Text, longWord)) && (!strings.Contains(response.Text, "@") && !strings.Contains(response.Text, ":") && !strings.Contains(response.Text, "slackbutt")){
+							log.Printf("        \\----found!:|%s|", response.Text)
+							markovBruteFound = true
+							break
+						}
+					}
+					
 				} else {
 					response.Text = markovChain.Generate(numWords, "")	
 				}
