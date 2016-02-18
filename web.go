@@ -85,7 +85,7 @@ func init() {
 						log.Printf("        \\----using backupBrute:|%s|", response.Text)
 					}
 					
-				} else if rand.Intn(99) < 100 { //smart reply long word
+				} else if rand.Intn(99) < 40 { //smart reply long word
 					log.Printf("    \\----Handling special request: smart |")
 					longWord := ""
 					for index,element := range strings.Split(text, " ") {
