@@ -47,19 +47,19 @@ func init() {
 					log.Printf("Handling special request: what is your |")
 					log.Printf("   \\----matchStr:|%s|", matchStr)
 					log.Printf("   \\----startStr:|%s|", startStr)
-				} else if rand.Intn(99) < 99 {
+				} else if rand.Intn(99) < 100 {
 					log.Printf("Handling special request: smart |")
 					smart := regexp.MustCompile("([0-9A-Za-z_'])*")
 					strArr := smart.FindAllString(text, -1)
 					startStr := strArr[0]
 					for index,element := range strArr {
 						if len(element) > len(startStr){
-							startStr = element	
+							startStr = element
+							log.Printf("   \\----smartStart:|%i: %s|", index, startStr)
 						}
 					}
 					log.Printf("   \\----startStr:|%s|", startStr)
 				}
-				
 				
 				var response WebhookResponse
 				response.Username = botUsername
