@@ -80,7 +80,7 @@ func init() {
 						}
 					}
 					log.Printf("        \\----checking backupBrute:|%s|%s|", backupBrute, strSplit[len(strSplit)-1])
-					if markovBruteFound == false && backupBrute != strSplit[len(strSplit)-1]{
+					if markovBruteFound == false && backupBrute != strSplit[len(strSplit)-1] && strings.Contains(response.Text, "@") && strings.Contains(response.Text, ":"){
 						response.Text = backupBrute
 						log.Printf("        \\----using backupBrute:|%s|", response.Text)
 					}
