@@ -47,8 +47,12 @@ func init() {
 					matchStr = strings.Trim(strings.Split(wiy.FindString(text), "hat is your")[1], " ")
 					if rand.Intn(99) < 90 {
 						startStr = strings.Trim("My " + matchStr +" is", " ")
+						strSplit := strings.Split(startStr, " ")
+						backupBrute := strSplit[len(strSplit)-2]
 					} else {
 						startStr = strings.Trim("My " + matchStr, " ")
+						strSplit := strings.Split(startStr, " ")
+						backupBrute := strSplit[len(strSplit)-1]
 					}
 					log.Printf("  \\----Handling special request: what is your |")
 					log.Printf("    \\----Handling special request: smart |")
@@ -56,9 +60,7 @@ func init() {
 					log.Printf("    \\----startStr:|%s|", startStr)
 					
 					markovBruteFound = false
-					
-					strSplit := strings.Split(startStr, " ")
-					backupBrute := strSplit[len(strSplit)-1]
+
 					log.Printf("    \\----backupBrute:|%s|", backupBrute)
 					for markovBrute < 25000 && markovBruteFound == false {
 						markovBrute += 1
