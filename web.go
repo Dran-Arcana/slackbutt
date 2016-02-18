@@ -45,7 +45,7 @@ func init() {
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
 					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 					matchStr = strings.Trim(strings.Split(wiy.FindString(text), "hat is your")[1], " ")
-					strSplit := []strings.Split
+					strSplit := []string
 					backupBrute := ""
 					
 					if rand.Intn(99) < 90 {
