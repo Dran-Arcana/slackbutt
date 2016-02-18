@@ -39,7 +39,7 @@ func init() {
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
 					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
-					if rand.Intn(99) <= 50 {
+					if rand.Intn(99) < 90 {
 						startStr = strings.Trim("My" + matchStr +" is", " ")
 					} else {
 						startStr = strings.Trim("My" + matchStr, " ")
@@ -47,7 +47,14 @@ func init() {
 					log.Printf("Handling special request: what is your |")
 					log.Printf("   \\----matchStr:|%s|", matchStr)
 					log.Printf("   \\----startStr:|%s|", startStr)
+				} else if rand.Intn(99) < 99 {
+					log.Printf("Handling special request: smart |")
+					smart := regexp.MustCompile("([0-9A-Za-z_'])*")
+					startStr := smart.Longest(text)
+					log.Printf("   \\----startStr:|%s|", startStr)
 				}
+				
+				
 				var response WebhookResponse
 				response.Username = botUsername
 				response.Text = markovChain.Generate(numWords, startStr)
@@ -63,7 +70,7 @@ func init() {
 					twitterClient.Post(response.Text)
 				}
 
-				time.Sleep(5 * time.Second)
+				time.Sleep(3 * time.Second)
 				w.Write(b)
 				
 				lastResponse = text
