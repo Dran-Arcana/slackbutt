@@ -69,7 +69,7 @@ func init() {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
 						//log.Printf("      \\----trying:|%i|%s|", markovBrute, response.Text)
-						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
+						if (strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr)) && (!strings.Contains(response.Text, "@") && !strings.Contains(response.Text, ":") && !strings.Contains(response.Text, "slackbutt")){
 							log.Printf("        \\----found!:|%s|", response.Text)
 							markovBruteFound = true
 							break
@@ -80,7 +80,7 @@ func init() {
 						}
 					}
 					log.Printf("        \\----checking backupBrute:|%s|%s|", backupBrute, strSplit[len(strSplit)-1])
-					if markovBruteFound == false && backupBrute != strSplit[len(strSplit)-1] || (strings.Contains(response.Text, "@") || strings.Contains(response.Text, ":") || strings.Contains(response.Text, "slackbutt")){
+					if markovBruteFound == false && backupBrute != strSplit[len(strSplit)-1]{
 						response.Text = backupBrute
 						log.Printf("        \\----using backupBrute:|%s|", response.Text)
 					}
