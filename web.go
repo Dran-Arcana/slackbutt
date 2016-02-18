@@ -55,7 +55,7 @@ func init() {
 					log.Printf("        \\----matchStr:|%s|", matchStr)
 					log.Printf("        \\----startStr:|%s|", startStr)
 					
-					markovBruteFound == false
+					markovBruteFound = false
 					
 					strSplit := strings.Split(startStr, " ")
 					backupBrute := strSplit[len(strSplit)-1]
