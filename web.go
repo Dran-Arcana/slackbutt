@@ -45,14 +45,17 @@ func init() {
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
 					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
 					matchStr = strings.Trim(strings.Split(wiy.FindString(text), "hat is your")[1], " ")
+					strSplit := []strings.Split
+					backupBrute := ""
+					
 					if rand.Intn(99) < 90 {
 						startStr = strings.Trim("My " + matchStr +" is", " ")
-						strSplit := strings.Split(startStr, " ")
-						backupBrute := strSplit[len(strSplit)-2]
+						strSplit = strings.Split(startStr, " ")
+						backupBrute = strSplit[len(strSplit)-2]
 					} else {
 						startStr = strings.Trim("My " + matchStr, " ")
-						strSplit := strings.Split(startStr, " ")
-						backupBrute := strSplit[len(strSplit)-1]
+						strSplit = strings.Split(startStr, " ")
+						backupBrute = strSplit[len(strSplit)-1]
 					}
 					log.Printf("  \\----Handling special request: what is your |")
 					log.Printf("    \\----Handling special request: smart |")
