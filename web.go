@@ -50,7 +50,13 @@ func init() {
 				} else if rand.Intn(99) < 99 {
 					log.Printf("Handling special request: smart |")
 					smart := regexp.MustCompile("([0-9A-Za-z_'])*")
-					startStr := smart.Longest(text)
+					strArr := smart.FindAllString(text)
+					startStr := strArr[0]  
+					for index,element := range someSlice {
+						if len(element) > len(startStr){
+							startStr = element	
+						}
+					}
 					log.Printf("   \\----startStr:|%s|", startStr)
 				}
 				
