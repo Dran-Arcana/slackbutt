@@ -62,7 +62,7 @@ func init() {
 					for markovBrute < 25000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
-						log.Printf("      \\----trying:|%i|", markovBrute)
+						log.Printf("      \\----trying:|%i|%s|", markovBrute, response.Text)
 						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
 							log.Printf("        \\----found!:|%s|", response.Text)
 							markovBruteFound = true
