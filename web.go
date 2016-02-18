@@ -51,9 +51,9 @@ func init() {
 						startStr = strings.Trim("My" + matchStr, " ")
 					}
 					log.Printf("  \\----Handling special request: what is your |")
-					log.Printf("        \\----Handling special request: smart |")
-					log.Printf("        \\----matchStr:|%s|", matchStr)
-					log.Printf("        \\----startStr:|%s|", startStr)
+					log.Printf("    \\----Handling special request: smart |")
+					log.Printf("    \\----matchStr:|%s|", matchStr)
+					log.Printf("    \\----startStr:|%s|", startStr)
 					
 					markovBruteFound = false
 					
@@ -62,6 +62,7 @@ func init() {
 					for markovBrute < 500 || markovBruteFound == true {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
+						log.Printf("      \\----trying:|%s|", startStr)
 						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
 							markovBruteFound = true
 						}
@@ -89,7 +90,7 @@ func init() {
 					twitterClient.Post(response.Text)
 				}
 
-				time.Sleep(3 * time.Second)
+				time.Sleep(1 * time.Second)
 				w.Write(b)
 				lastResponse = response.Text
 				
