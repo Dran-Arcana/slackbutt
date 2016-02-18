@@ -65,7 +65,7 @@ func init() {
 					markovBruteFound = false
 
 					log.Printf("    \\----backupBrute:|%s|", backupBrute)
-					for markovBrute < 25000 && markovBruteFound == false {
+					for markovBrute < 100000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
 						//log.Printf("      \\----trying:|%i|%s|", markovBrute, response.Text)
