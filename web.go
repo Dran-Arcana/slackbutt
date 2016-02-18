@@ -86,8 +86,9 @@ func init() {
 				
 				lastResponse = text
 			} else {
+				log.Printf("  \\----learning:|%s|%s|", lastResponse, text)
 				if text != "" && !strings.Contains(lastResponse, text){
-					log.Printf("   \\----learning")
+					log.Printf("        \\----yes")
 					markovChain.Write(text)
 				}
 
