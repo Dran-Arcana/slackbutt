@@ -89,6 +89,7 @@ func init() {
 					log.Printf("    \\----Handling special request: smart |")
 					longWord := ""
 					for index,element := range strings.Split(text, " ") {
+						log.Printf("      \\----word:|%i|%s|", index, element)
 						if len(longWord) > len(element) && element != "slackbutt"{
 							longWord = element
 								log.Printf("      \\----longWord:|%i|%s|", index, longWord)
