@@ -51,8 +51,8 @@ func init() {
 					log.Printf("Handling special request: smart |")
 					smart := regexp.MustCompile("([0-9A-Za-z_'])*")
 					strArr := smart.FindAllString(text, -1)
-					startStr := strArr[0]  
-					for index,element := range someSlice {
+					startStr := strArr[0]
+					for index,element := range strArr {
 						if len(element) > len(startStr){
 							startStr = element	
 						}
