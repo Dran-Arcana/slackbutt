@@ -90,7 +90,7 @@ func init() {
 					longWord := ""
 					for index,element := range strings.Split(text, " ") {
 						log.Printf("      \\----word:|%i|%s|", index, element)
-						if len(element) > len(longWord) && !strings.Contains(element,"lackbutt"){
+						if len(element) >= len(longWord) && !strings.Contains(element,"lackbutt"){
 							longWord = strings.Split(strings.Split(strings.Split(element, "?")[0], "!")[0], ".")[0]
 								log.Printf("      \\----longWord:|%i|%s|", index, longWord)
 						}
