@@ -59,10 +59,10 @@ func init() {
 					
 					strSplit := strings.Split(startStr, " ")
 					backupBrute := strSplit[len(strSplit)-1]
-					for markovBrute < 10000 || markovBruteFound == true {
+					for markovBrute < 1000 || markovBruteFound == true {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
-						//log.Printf("      \\----trying:|%s|", response.Text)
+						log.Printf("      \\----trying:|%s|", response.Text)
 						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
 							markovBruteFound = true
 						}
