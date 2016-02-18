@@ -22,13 +22,14 @@ type WebhookResponse struct {
 	Text     string `json:"text"`
 }
 
+var lastResponse string
+
 func init() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		incomingText := r.PostFormValue("text")
 		if incomingText != "" && r.PostFormValue("user_id") != "" {
 			text := parseText(incomingText)
 			log.Printf("Handling incoming request: %s", text)
-			var lastResponse string
 
 			if rand.Intn(99) < responseChance || strings.Contains(text, botUsername) {
 				var startStr string
@@ -83,8 +84,8 @@ func init() {
 
 				time.Sleep(3 * time.Second)
 				w.Write(b)
+				lastResponse = response.Text
 				
-				lastResponse = text
 			} else {
 				log.Printf("  \\----learning:|%s|%s|", lastResponse, text)
 				if text != "" && !strings.Contains(lastResponse, text){
