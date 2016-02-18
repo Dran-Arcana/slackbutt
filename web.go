@@ -95,7 +95,7 @@ func init() {
 								//log.Printf("      \\----longWord:|%i|%s|", index, longWord)
 						}
 					}
-					log.Printf("      \\----longWord:|%i|%s|", index, longWord)
+					log.Printf("      \\----longWord:|%s|", longWord)
 					for markovBrute < 100000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
