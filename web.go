@@ -59,7 +59,7 @@ func init() {
 					
 					strSplit := strings.Split(startStr, " ")
 					backupBrute := strSplit[len(strSplit)-1]
-					for markovBrute < 10000 || markovBruteFound == true {
+					for markovBrute < 25000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
 						log.Printf("      \\----trying:|%i|", markovBrute)
