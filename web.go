@@ -111,6 +111,8 @@ func init() {
 					response.Text = markovChain.Generate(numWords, "")	
 				}
 				
+				response.Text = strings.Replace(response.Text, "@", "[@]", -1) //remove pingrights
+				
 				log.Printf("Sending response: %s", response.Text)
 
 				b, err := json.Marshal(response)
