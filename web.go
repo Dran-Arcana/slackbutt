@@ -89,12 +89,13 @@ func init() {
 					log.Printf("    \\----Handling special request: smart |")
 					longWord := ""
 					for index,element := range strings.Split(text, " ") {
-						log.Printf("      \\----word:|%i|%s|", index, element)
+						//log.Printf("      \\----word:|%i|%s|", index, element)
 						if len(element) >= len(longWord) && !strings.Contains(element,"lackbutt"){
 							longWord = strings.Split(strings.Split(strings.Split(element, "?")[0], "!")[0], ".")[0]
-								log.Printf("      \\----longWord:|%i|%s|", index, longWord)
+								//log.Printf("      \\----longWord:|%i|%s|", index, longWord)
 						}
 					}
+					log.Printf("      \\----longWord:|%i|%s|", index, longWord)
 					for markovBrute < 100000 && markovBruteFound == false {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
