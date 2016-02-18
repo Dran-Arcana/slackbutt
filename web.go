@@ -44,21 +44,24 @@ func init() {
 					} else {
 						startStr = strings.Trim("My" + matchStr, " ")
 					}
-					log.Printf("Handling special request: what is your |")
-					log.Printf("   \\----matchStr:|%s|", matchStr)
-					log.Printf("   \\----startStr:|%s|", startStr)
+					log.Printf("  \\----Handling special request: what is your |")
+					log.Printf("        \\----matchStr:|%s|", matchStr)
+					log.Printf("        \\----startStr:|%s|", startStr)
 				} else if rand.Intn(99) < 100 {
-					log.Printf("Handling special request: smart |")
+					log.Printf("  \\----Handling special request: smart |")
 					smart := regexp.MustCompile("([0-9A-Za-z_'])*")
 					strArr := smart.FindAllString(text, -1)
 					startStr := strArr[0]
+					if strings.Contains(startStr, "slackbutt"){
+						startStr = ""	
+					}
 					for index,element := range strArr {
-						if len(element) > len(startStr){
+						if len(element) > len(startStr) && !strings.Contains(element, "slackbutt"){
 							startStr = element
-							log.Printf("   \\----smartStart:|%i: %s|", index, startStr)
+							log.Printf("        \\----smartStart:|%i: %s|", index, startStr)
 						}
 					}
-					log.Printf("   \\----startStr:|%s|", startStr)
+					log.Printf("        \\----startStr:|%s|", startStr)
 				}
 				
 				var response WebhookResponse
