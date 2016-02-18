@@ -44,11 +44,11 @@ func init() {
 				
 				if strings.Contains(text, "What is your") || strings.Contains(text, "what is your") {
 					wiy := regexp.MustCompile("([W|w]hat is your)([0-9A-Za-z_]*( )*)*")
-					matchStr = strings.Split(wiy.FindString(text), "hat is your")[1]
+					matchStr = strings.Trim(strings.Split(wiy.FindString(text), "hat is your")[1], " ")
 					if rand.Intn(99) < 90 {
-						startStr = strings.Trim("My" + matchStr +" is", " ")
+						startStr = strings.Trim("My " + matchStr +" is", " ")
 					} else {
-						startStr = strings.Trim("My" + matchStr, " ")
+						startStr = strings.Trim("My " + matchStr, " ")
 					}
 					log.Printf("  \\----Handling special request: what is your |")
 					log.Printf("    \\----Handling special request: smart |")
@@ -62,7 +62,7 @@ func init() {
 					for markovBrute < 10000 || markovBruteFound == true {
 						markovBrute += 1
 						response.Text = markovChain.Generate(numWords, "")
-						log.Printf("      \\----trying:|%s|", response.Text)
+						//log.Printf("      \\----trying:|%s|", response.Text)
 						if strings.Contains(response.Text, startStr) || strings.Contains(response.Text, matchStr){
 							markovBruteFound = true
 						}
