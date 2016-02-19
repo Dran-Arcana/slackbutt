@@ -112,6 +112,9 @@ func init() {
 				}
 				
 				response.Text = strings.Replace(response.Text, "@", "[@]", -1) //remove pingrights
+				response.Text = strings.Replace(response.Text, "<!", "[@]", -1) //remove pingrights
+				
+				log.Printf("          \\----Stripping @")
 				
 				log.Printf("Sending response: %s", response.Text)
 
